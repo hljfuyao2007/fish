@@ -1,0 +1,51 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label">user_id</label>
+            <div class="layui-input-block">
+                <input type="text" name="user_id" class="layui-input"  placeholder="请输入user_id" value="{$row.user_id|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">回访质量(星级)</label>
+            <div class="layui-input-block">
+                <input type="text" name="star" class="layui-input"  placeholder="请输入回访质量(星级)" value="{$row.star|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">标记客户状态</label>
+            <div class="layui-input-block">
+                <input type="text" name="type_id" class="layui-input"  placeholder="请输入标记客户状态" value="{$row.type_id|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否继续跟踪</label>
+            <div class="layui-input-block">
+                <input type="text" name="status" class="layui-input"  placeholder="请输入是否继续跟踪" value="{$row.status|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">图片说明</label>
+            <div class="layui-input-block layuimini-upload">
+                <input name="images" class="layui-input layui-col-xs6"   placeholder="请上传图片说明" value="{$row.images|default=''}">
+                <div class="layuimini-upload-btn">
+                    <span><a class="layui-btn" data-upload="images" data-upload-number="one" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_images" data-upload-select="images" data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">回访备注</label>
+            <div class="layui-input-block">
+                <input type="text" name="notes" class="layui-input"  placeholder="请输入回访备注" value="{$row.notes|default=''}">
+            </div>
+        </div>
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>
