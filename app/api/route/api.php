@@ -8,6 +8,7 @@ Route::group('index', function () {
 	Route::any('test', 'test'); // test
 })->prefix('index/');
 
+Route::any('api/<m>/<a>/<n>', 'api/<m>.<a>/<n>');
 Route::any('api/<m>/<a>', 'api.<m>/<a>');
 Route::any('api/<m>', 'api.<m>/index');
 Route::any('api', 'api.index/index');

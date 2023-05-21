@@ -16,9 +16,32 @@ define(["jquery", "easy-admin"], function ($, ea) {
         index: function () {
             ea.table.render({
                 init: init,
+                toolbar:["refresh","add","export"],
                 cols: [[
-                    {type: 'checkbox'},                    {field: 'id', title: 'id'},                    {field: 'title', title: 'title'},                    {field: 'color', title: 'color'},                    {field: 'star', title: '0不再跟踪 数字越高级别越强'},                    {field: 'sort', title: '排序', edit: 'text'},                    {field: 'create_time', title: 'create_time'},                    {field: 'status', title: '0关闭 1继续跟踪', templet: ea.table.switch},                    {width: 250, title: '操作', templet: ea.table.tool},
-                ]],
+                    {type: 'checkbox'},
+                    {field: 'id', title: 'id'},
+                    {field: 'title', title: '标题'},
+                    {field: 'color', title: '颜色'},
+                    // {field: 'star', title: '跟踪级别'},
+                    {field: 'star', title: '跟踪级别',search: false, templet: function (d) {
+                            return '<div id="score' + d.id + '"></div>'
+                     }},
+                    {field: 'sort', title: '排序', edit: 'text'},
+                    {field: 'create_time', title: 'create_time'},
+                    {field: 'status', title: '是否继续跟踪', templet: ea.table.switch},
+                    {width: 250, title: '操作', templet: ea.table.tool,operat:["edit"]},
+                ]],done: function (res) {
+                    var rate=layui.rate;
+                    var data = res.data
+                    for (var item in data) {
+                        rate.render({
+                            elem: '#score' + data[item].id
+                            , value: data[item].star
+                            ,theme:"#F56D6D"
+                            , readonly: true
+                        })
+                    }
+                }
             });
 
             ea.listen();

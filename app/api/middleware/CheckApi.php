@@ -4,10 +4,12 @@ declare (strict_types = 1);
 namespace app\api\middleware;
 
 use app\api\model\AppUser;
+use app\api\model\SystemAdmin;
 use app\api\service\Vip as SVip;
 use think\cache\driver\Redis as CRedis;
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use think\Request;
 
 class CheckApi
@@ -24,7 +26,7 @@ class CheckApi
 
 
         //关闭登录验证
-        return $next($request);
+//        return $next($request);
         //return $next($request);
         try {
             $api_config = config('api');
@@ -36,6 +38,7 @@ class CheckApi
             }else{
                 $current_controller = $current_path_info[1];
             }
+
             if (in_array($current_controller, $api_config['no_login_controller'])) { // 判断是否需要验证token
                 return $next($request);
             }
@@ -49,13 +52,19 @@ class CheckApi
 				return $next($request);
 			}
 
-//          $token = $request->header('Authorization');
-            $token = $request->header('token');
+            $token = $request->header('Authorization');
+
+//            $token = $request->header('token');
 //            echo $token;exit;
             if (!$token) {
                 return json(['code'=> 401, 'message'=> '登录过期, 请重新登录']);
             }
-            $decode = JWT::decode($token, config('jwt.jwt_key'), config('jwt.algs'));
+
+
+            $key = new Key(config('jwt.jwt_key'), 'HS256');
+            $decode = JWT::decode($token, $key);
+
+//            return json(['code'=> 401, 'message'=> $token,'data'=>config('jwt')]);
 			$c_redis = new CRedis(config('cache.stores.redis'));
 
 
@@ -63,22 +72,22 @@ class CheckApi
                 return json(['code'=> 401, 'message'=> '登录过期, 请重新登录2']);
             }
 
-//			$new_token = $c_redis->get('token_' . $decode->data->user_id);
-//			if ($new_token != $token) {
-//				return json(['code'=> 401, 'message'=> '您的账号已在其他设备登录']);
-//			}
+			$new_token = $c_redis->get('token_' . $decode->data->user_id);
+			if ($new_token != $token) {
+				return json(['code'=> 401, 'message'=> '您的账号已在其他设备登录']);
+			}
 
             $request->user_id = $decode->data->user_id;
 
-            $m_user = new AppUser();
+            $m_user = new SystemAdmin();
             $d_user = $m_user->find($request->user_id);
-
             if (!$d_user) {
                 return json(['code'=> 401, 'message'=> '用户不存在']);
             }
 
+            $request->d_user = $d_user;
             $request->session_key = $decode->data->session_key;
-            $request->openid = $decode->data->openid;
+//            $request->openid = $decode->data->openid;
 
 // 检查vip, 先放这里, 有需求再改消息队列
 // 			$s_vip = new SVip();

@@ -356,8 +356,9 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                     }
                 });
                 if (formHtml !== '') {
-
-                    $(elem).before('<fieldset id="searchFieldset_' + tableId + '" class="table-search-fieldset layui-hide">\n' +
+                    let hh="layui-hide";
+                    if($("#currentTable").attr("data-show-select")){hh="";}
+                    $(elem).before('<fieldset id="searchFieldset_' + tableId + '" class="table-search-fieldset '+hh+'">\n' +
                         '<legend>条件搜索</legend>\n' +
                         '<form class="layui-form layui-form-pane form-search">\n' +
                         formHtml +
@@ -1500,3 +1501,10 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
     };
     return admin;
 });
+function getQueryString(name,mr) {
+    if(!mr)mr=null;
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURI(r[2]);
+    return mr;
+}

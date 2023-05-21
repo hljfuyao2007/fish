@@ -222,8 +222,6 @@ if (!function_exists('contextualTime')) {
 
 
 if (!function_exists('gen_jwt_token')) {
-
-
 	/**
 	 * 生成token
 	 * @param array $param
@@ -238,7 +236,7 @@ if (!function_exists('gen_jwt_token')) {
 			'data' => $param
 		];
 
-		$token = JWT::encode($en_data, config('jwt.jwt_key'),"HS256");
+		$token = JWT::encode($en_data, config('jwt.jwt_key'),"HS256","0000");
 
 		$c_redis = new CRedis(config('cache.stores.redis'));
 		$c_redis->set('token_'. $param['user_id'], $token);

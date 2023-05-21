@@ -1,8 +1,8 @@
 <?php
-
 namespace app\admin\controller;
 
-
+use app\admin\model\FishFollow;
+use app\admin\model\FishUser;
 use app\admin\model\SystemAdmin;
 use app\admin\model\SystemQuick;
 use app\common\controller\AdminController;
@@ -36,6 +36,18 @@ class Index extends AdminController
             ->order('sort', 'desc')
             ->limit(8)
             ->select();
+        $fish_user=new FishUser();
+        $fish_follow=new FishFollow();
+        $all_num=$fish_user->count();
+        $follow_num=$fish_follow->count();
+        $today=strtotime(date("Y-m-d")." 00:00:00");
+        $today_num=$fish_user->where("create_time",">",$today)->count();
+        $today_follow_num=$fish_follow->where("create_time",">",$today)->count();
+        $this->assign('all_num', $all_num);
+        $this->assign('follow_num', $follow_num);
+        $this->assign('today_num', $today_num);
+        $this->assign('today_follow_num', $today_follow_num);
+
         $this->assign('quicks', $quicks);
         return $this->fetch();
     }

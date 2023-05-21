@@ -3,16 +3,17 @@
         <div class="layui-form-item">
             <label class="layui-form-label">称呼</label>
             <div class="layui-input-block">
-                <input type="text" name="nick_name" class="layui-input"  placeholder="请输入昵称" value="{$row.nick_name|default=''}">
+                <input type="text" name="nick_name" class="layui-input"  placeholder="请输入昵称" value="{$row.nick_name|default=''}"
+                       {neq name="$row.nick_name" value=""}disabled{/neq}>
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label required">平台</label>
+            <label class="layui-form-label ">平台</label>
             <div class="layui-input-block">
-                <!-- <input type="text" name="platform_id" class="layui-input"  placeholder="请输入平台" value="{$row.platform_id|default=''}">-->
+                <!--                <input type="text" name="platform_id" class="layui-input"  placeholder="请输入平台" value="{$row.platform_id|default=''}">-->
 
-                <select name="platform_id" lay-verify="required" data-value="{$row.platform_id|default=1}" data-select="{:url('fish.platform/index')}" data-fields="id,name">
+                <select name="platform_id" lay-verify="required" data-value="{$row.platform_id|default=1}" data-select="{:url('fish.platform/index')}" data-fields="id,name" disabled>
                 </select>
             </div>
         </div>
@@ -28,7 +29,6 @@
                 <select name="sex" lay-verify="required" data-value="{$row.sex|default=1}" >
                     <option value="0" {eq name="$row.sex??1" value="0"} selected {/eq}>女</option>
                     <option value="1" {eq name="$row.sex??1" value="1"} selected {/eq}>男</option>
-
                 </select>
             </div>
         </div
@@ -45,32 +45,32 @@
         <div class="layui-form-item">
             <label class="layui-form-label">平台昵称</label>
             <div class="layui-input-block">
-                <input type="text" name="platform_nickname" class="layui-input"  placeholder="请输入平台昵称" value="{$row.platform_nickname|default=''}">
+                <input type="text" name="platform_nickname" class="layui-input"  placeholder="请输入平台昵称" value="{$row.platform_nickname|default=''}"  {neq name="$row.platform_nickname" value=""}disabled{/neq}>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">平台账号</label>
             <div class="layui-input-block">
-                <input type="text" name="platform_account" class="layui-input"  placeholder="请输入平台账号" value="{$row.platform_account|default=''}">
+                <input type="text" name="platform_account" class="layui-input"  placeholder="请输入平台账号" value="{$row.platform_account|default=''}" {neq name="$row.platform_account" value=""}disabled{/neq}>
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">微信号</label>
             <div class="layui-input-block">
-                <input type="text" name="wechart" class="layui-input"  placeholder="请输入微信号" value="{$row.wechart|default=''}">
+                <input type="text" name="wechart" class="layui-input"  placeholder="请输入微信号" value="{$row.wechart|default=''}" {neq name="$row.wechart" value=""}disabled{/neq}>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">微信昵称</label>
             <div class="layui-input-block">
-                <input type="text" name="wechart_nickname" class="layui-input"  placeholder="请输入微信昵称" value="{$row.wechart_nickname|default=''}">
+                <input type="text" name="wechart_nickname" class="layui-input"  placeholder="请输入微信昵称" value="{$row.wechart_nickname|default=''}" {neq name="$row.wechart_nickname" value=""}disabled{/neq}>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">电话号</label>
             <div class="layui-input-block">
-                <input type="text" name="phone" class="layui-input"  placeholder="请输入电话号" value="{$row.phone|default=''}">
+                <input type="text" name="phone" class="layui-input"  placeholder="请输入电话号" value="{$row.phone|default=''}" {neq name="$row.phone" value=""}disabled{/neq}>
             </div>
         </div>
 
@@ -78,13 +78,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">真实姓名</label>
             <div class="layui-input-block">
-                <input type="text" name="realname" class="layui-input"  placeholder="请输入真实姓名" value="{$row.realname|default=''}">
+                <input type="text" name="realname" class="layui-input"  placeholder="请输入真实姓名" value="{$row.realname|default=''}" {neq name="$row.realname" value=""}disabled{/neq}>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">身份证号</label>
             <div class="layui-input-block">
-                <input type="text" name="idcard" class="layui-input"  placeholder="请输入身份证号" value="{$row.idcard|default=''}">
+                <input type="text" name="idcard" class="layui-input"  placeholder="请输入身份证号" value="{$row.idcard|default=''}" {neq name="$row.idcard" value=""}disabled{/neq}>
             </div>
         </div>
         <!--        <div class="layui-form-item">-->

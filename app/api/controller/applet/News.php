@@ -1,7 +1,7 @@
 <?php
 declare (strict_types = 1);
 
-namespace app\api\controller\applet;
+namespace app\api\controller\admin\admin\applet;
 
 
 use app\common\controller\ApiController;

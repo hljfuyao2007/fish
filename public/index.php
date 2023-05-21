@@ -11,9 +11,18 @@
 
 // [ 应用入口文件 ]
 namespace think;
+header('Access-Control-Allow-Origin:*');
+$origin = isset($_SERVER['HTTP_ORIGIN'])? $_SERVER['HTTP_ORIGIN'] : '';
+$allow_origin = array();
+if(true || in_array($origin, $allow_origin)){
+    header('Access-Control-Allow-Origin:'.$origin);
+}
+header("Access-Control-Allow-Methods:GET,POST,OPTIONS,DELETE");
+header("Access-Control-Allow-Credentials:true");
+header("Access-Control-Allow-Headers:DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type, Accept-Language, Origin, Accept-Encoding,Authorization,language_id,Cookies,Cookie");
 
 require __DIR__ . '/../vendor/autoload.php';
-header('Access-Control-Allow-Origin:*');
+
 // 声明全局变量
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_PATH', __DIR__ . DS . '..' . DS);

@@ -108,3 +108,70 @@
     </div>
 </div>
 </body>
+
+<audio  id="tsy_audio" style="width: 0;">
+    <source src="/static/video/y1321.mp3" type="audio/mpeg">
+    您的浏览器不支持 audio 元素。
+</audio>
+
+<script>
+    var tsy_audio=document.getElementById("tsy_audio");
+function keep_login(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("get",'/api/index/keep_login?admin_id={$admin.id|default=0}');
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        console.log(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            // console.log(data);
+            if(data.data.new == 1){
+                new_msg_tx();
+            }
+            setTimeout(function(){
+                keep_login();
+            },5000);
+
+        }
+    };
+}
+function audio_play(){
+    tsy_audio.volume=1;
+    tsy_audio.load();
+    tsy_audio.play();
+}
+function new_msg_tx(){
+    audio_play();
+    layer.open({
+        type: 1,
+        title: '<div style="text-align:center;color: #990033;">你有新的消息待查看</div>',
+        area:['500px','300px'],
+        offset: 'rb',
+        content: '<div class="modal-body"> 你有新的消息待查看 </div>',
+        shade: 0,
+        skin: 'reminder-skin',
+        btn: ['确定'],
+        yes: function (index) {
+            layer.close(index);
+            tsy_audio.pause();
+        }, cancel : function() {
+            tsy_audio.pause();
+        }
+    });
+}
+
+keep_login();
+
+</script>
+<style>
+    .reminder-skin{
+        box-shadow: 0 0 0 rgba(0,0,0,0) !important;/*前景无阴影*/
+    }
+    .modal-body{
+        width: 100%;
+        text-align: center;
+        font-size: 30px;
+        line-height: 50px;
+        padding-top: 30px;
+    }
+</style>

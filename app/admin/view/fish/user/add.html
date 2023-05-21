@@ -1,94 +1,114 @@
 <div class="layuimini-container">
     <form id="app-form" class="layui-form layuimini-form">
-        
         <div class="layui-form-item">
-            <label class="layui-form-label">昵称</label>
+            <label class="layui-form-label">称呼</label>
             <div class="layui-input-block">
-                <input type="text" name="nick_name" class="layui-input"  placeholder="请输入昵称" value="">
+                <input type="text" name="nick_name" class="layui-input"  placeholder="请输入昵称" value="{$row.nick_name|default=''}">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">微信号</label>
-            <div class="layui-input-block">
-                <input type="text" name="wechart" class="layui-input"  placeholder="请输入微信号" value="">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">微信昵称</label>
-            <div class="layui-input-block">
-                <input type="text" name="wechart_nickname" class="layui-input"  placeholder="请输入微信昵称" value="">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">电话号</label>
-            <div class="layui-input-block">
-                <input type="text" name="phone" class="layui-input"  placeholder="请输入电话号" value="">
-            </div>
-        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">平台</label>
             <div class="layui-input-block">
-                <input type="text" name="platform_id" class="layui-input"  placeholder="请输入平台" value="">
+<!--                <input type="text" name="platform_id" class="layui-input"  placeholder="请输入平台" value="{$row.platform_id|default=''}">-->
+                <select name="platform_id" lay-verify="required" data-value="{$row.platform_id|default=1}"  data-select="{:url('fish.platform/index')}" data-fields="id,name">
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">平台账号</label>
+            <label class="layui-form-label">年龄</label>
             <div class="layui-input-block">
-                <input type="text" name="platform_account" class="layui-input"  placeholder="请输入平台账号" value="">
+                <input type="number" name="age" class="layui-input"  placeholder="请输入年龄" value="{$row.age|default='30'}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+                <select name="sex" lay-verify="required" data-value="{$row.sex|default=1}" >
+                    <option value="0" {eq name="$row.sex??1" value="0"} selected {/eq}>女</option>
+                    <option value="1" {eq name="$row.sex??1" value="1"} selected {/eq}>男</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">病种</label>
+            <div class="layui-input-block">
+<!--                <input type="number" name="illness" class="layui-input"  placeholder="请输入病种" value="{$row.illness|default=''}">-->
+
+                {foreach illness_list as $key=>$val}
+                    <input type="checkbox" name="illness[{$key}]" lay-skin="primary" value="{$key}" title="{$val}">
+                {/foreach}
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">平台昵称</label>
             <div class="layui-input-block">
-                <input type="text" name="platform_nickname" class="layui-input"  placeholder="请输入平台昵称" value="">
+                <input type="text" name="platform_nickname" class="layui-input"  placeholder="请输入平台昵称" value="{$row.platform_nickname|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">realname</label>
+            <label class="layui-form-label">平台账号</label>
             <div class="layui-input-block">
-                <input type="text" name="realname" class="layui-input"  placeholder="请输入realname" value="">
+                <input type="text" name="platform_account" class="layui-input"  placeholder="请输入平台账号" value="{$row.platform_account|default=''}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">微信号</label>
+            <div class="layui-input-block">
+                <input type="text" name="wechart" class="layui-input"  placeholder="请输入微信号" value="{$row.wechart|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">微信昵称</label>
+            <div class="layui-input-block">
+                <input type="text" name="wechart_nickname" class="layui-input"  placeholder="请输入微信昵称" value="{$row.wechart_nickname|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话号</label>
+            <div class="layui-input-block">
+                <input type="text" name="phone" class="layui-input"  placeholder="请输入电话号" value="{$row.phone|default=''}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">真实姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="realname" class="layui-input"  placeholder="请输入真实姓名" value="{$row.realname|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">身份证号</label>
             <div class="layui-input-block">
-                <input type="text" name="idcard" class="layui-input"  placeholder="请输入身份证号" value="">
+                <input type="text" name="idcard" class="layui-input"  placeholder="请输入身份证号" value="{$row.idcard|default=''}">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户星级</label>
-            <div class="layui-input-block">
-                <input type="text" name="star" class="layui-input"  placeholder="请输入用户星级" value="">
-            </div>
-        </div>
+        <!--        <div class="layui-form-item">-->
+        <!--            <label class="layui-form-label">用户星级</label>-->
+        <!--            <div class="layui-input-block">-->
+        <!--                <input type="text" name="star" class="layui-input"  placeholder="请输入用户星级" value="{$row.star|default=''}">-->
+        <!--            </div>-->
+        <!--        </div>-->
         <div class="layui-form-item">
             <label class="layui-form-label">备注</label>
             <div class="layui-input-block">
-                <input type="text" name="notes" class="layui-input"  placeholder="请输入备注" value="">
+                <!--                <input type="text" name="notes" class="layui-input"  placeholder="请输入备注" value="{$row.notes|default=''}">-->
+                <textarea name="notes" class="layui-textarea" placeholder="请输入备注">{$row.notes|default=''}</textarea>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label required">备注图片</label>
+            <label class="layui-form-label">备注图片</label>
             <div class="layui-input-block layuimini-upload">
-                <input name="images" class="layui-input layui-col-xs6"   placeholder="请上传备注图片" value="">
+                <input name="images" class="layui-input layui-col-xs6"   placeholder="请上传备注图片" value="{$row.images|default=''}">
                 <div class="layuimini-upload-btn">
-                    <span><a class="layui-btn" data-upload="images" data-upload-number="one" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
-                    <span><a class="layui-btn layui-btn-normal" id="select_images" data-upload-select="images" data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
+                    <span><a class="layui-btn" data-upload="images" data-upload-number="more" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_images" data-upload-select="images" data-upload-number="more" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
                 </div>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">客户状态</label>
-            <div class="layui-input-block">
-                <input type="text" name="type_id" class="layui-input"  placeholder="请输入客户状态" value="">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">是否跟踪中</label>
-            <div class="layui-input-block">
-                <input type="text" name="status" class="layui-input"  placeholder="请输入是否跟踪中" value="">
-            </div>
-        </div>
+
         <div class="hr-line"></div>
         <div class="layui-form-item text-center">
             <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>

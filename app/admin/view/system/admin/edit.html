@@ -32,7 +32,7 @@
             <label class="layui-form-label">角色权限</label>
             <div class="layui-input-block">
                 {foreach auth_list as $key=>$val}
-                <input type="checkbox" name="auth_ids[{$key}]" lay-skin="primary" title="{$val}" {if in_array($key,$row.auth_ids)}checked="" {/if}>
+                <input type="checkbox" name="auth_ids[{$key}]" value="{$key}" lay-skin="primary" title="{$val}" {if in_array($key,$row.auth_ids)}checked="" {/if}>
                 {/foreach}
             </div>
         </div>

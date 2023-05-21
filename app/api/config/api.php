@@ -14,9 +14,10 @@ return [
 
     // 不需要验证登录的控制器
     'no_login_controller' => [
+        'admin.login',
         'login',
 //		'test',
-//      'index',
+        'index',
 		'common',
 //		'lawyer',
 		'sms',

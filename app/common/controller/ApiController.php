@@ -217,10 +217,19 @@ class ApiController extends BaseController
             }
             $code_map[$status]['data'] = $data;
         }else {
-            return json(['code'=> 0, 'data'=> '', 'msg'=> '未知错误']);
+            return json(['code'=> $status, 'data'=> '', 'msg'=> $message]);
         }
 
         return json($code_map[$status]);
+    }
+
+    public function r($status = 'SUCCESS', $data = [], $message = '')
+    {
+        if($status == 'SUCCESS' || $status == 0) {
+            return json(['code' => 0, 'result' => $data, 'message' => $message, 'type' => "success"]);
+        }else{
+            return json(['code' => $status, 'result' => $data, 'message' => $message, 'type' => "warning"]);
+        }
     }
 
 }

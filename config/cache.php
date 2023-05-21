@@ -7,10 +7,17 @@ use think\facade\Env;
 
 return [
     // 默认缓存驱动
-    'default' => Env::get('cache.driver', 'file'),
+    'default' => Env::get('cache.driver', 'redis'),
 
     // 缓存连接方式配置
     'stores'  => [
+        'redis'=> [
+            'host'     => '127.0.0.1',
+            'port'     => 6379,
+            'expire'   => 0,
+            'prefix'   => 'fish_',
+            'password' => ''
+        ],
         'file' => [
             // 驱动方式
             'type'       => 'File',
@@ -24,13 +31,8 @@ return [
             'tag_prefix' => 'tag:',
             // 序列化机制 例如 ['serialize', 'unserialize']
             'serialize'  => [],
-        ],'redis'=> [
-            'host'     => '127.0.0.1',
-            'port'     => 6379,
-            'expire'   => 0,
-            'prefix'   => 'hy_',
-            'password' => ''
         ],
+
         // 更多的缓存连接
     ],
 ];

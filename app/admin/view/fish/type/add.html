@@ -1,36 +1,28 @@
 <div class="layuimini-container">
     <form id="app-form" class="layui-form layuimini-form">
-        
+
         <div class="layui-form-item">
-            <label class="layui-form-label">title</label>
+            <label class="layui-form-label">标题</label>
             <div class="layui-input-block">
-                <input type="text" name="title" class="layui-input"  placeholder="请输入title" value="">
+                <input type="text" name="title" class="layui-input"  placeholder="请输入标题" value="{$row.title|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">color</label>
+            <label class="layui-form-label">颜色</label>
             <div class="layui-input-block">
-                <input type="text" name="color" class="layui-input"  placeholder="请输入color" value="">
+                <input type="text" name="color" class="layui-input"  placeholder="请输入颜色" value="{$row.color|default=''}">
+                <tip>例如：#fff,#ffffff,red</tip>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">0不再跟踪 数字越高级别越强</label>
+            <label class="layui-form-label">客户级别</label>
             <div class="layui-input-block">
-                <input type="text" name="star" class="layui-input"  placeholder="请输入0不再跟踪 数字越高级别越强" value="1">
+                <div id="test1"></div>
+                <input type="hidden" name="star" id="star"  value="1">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">排序</label>
-            <div class="layui-input-block">
-                <input type="text" name="sort" class="layui-input"  placeholder="请输入排序" value="9">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">0关闭 1继续跟踪</label>
-            <div class="layui-input-block">
-                <input type="text" name="status" class="layui-input"  placeholder="请输入0关闭 1继续跟踪" value="1">
-            </div>
-        </div>
+
+
         <div class="hr-line"></div>
         <div class="layui-form-item text-center">
             <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
@@ -39,3 +31,24 @@
 
     </form>
 </div>
+
+
+<script>
+    layui.use('rate',function () {
+        let rate = layui.rate;
+        //基础效果
+        rate.render({
+            elem: '#test1',
+            // text: true,
+            value:1,
+            theme:"#F56D6D",
+            choose: function(value){
+                // if(value > 4) alert( '么么哒' )
+                $("#star").val(value);
+            },
+
+
+        });
+
+    });
+</script>

@@ -8,22 +8,18 @@ use EasyAdmin\annotation\NodeAnotation;
 use think\App;
 
 /**
- * @ControllerAnnotation(title="fish_type")
+ * @ControllerAnnotation(title="fish_illness")
  */
-class Type extends AdminController
+class Illness extends AdminController
 {
 
     use \app\admin\traits\Curd;
-    public $sort = [
-        'sort' => 'desc',
-        'id' => 'desc',
-    ];
 
     public function __construct(App $app)
     {
         parent::__construct($app);
 
-        $this->model = new \app\admin\model\FishType();
+        $this->model = new \app\admin\model\FishIllness();
         
     }
 

@@ -32,7 +32,8 @@
         "zhongshaofa/thinkphp-log-trace": "^1.0",
         "w7corp/easywechat": "^4.6",
         "ext-curl": "*",
-        "firebase/php-jwt": "^6.4"
+        "firebase/php-jwt": "^6.4",
+        "endroid/qr-code": "^4.3"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",

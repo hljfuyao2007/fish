@@ -212,6 +212,7 @@ class AdminController extends BaseController
         $data = $this->model
             ->where($this->selectWhere)
             ->field($fields)
+            ->order($this->sort)
             ->select();
         $this->success(null, $data);
     }
