@@ -20,6 +20,8 @@ class Index extends ApiController
 
 	public function test()
 	{
+        //生成二维码
+
 		return 'ok';
 	}
 
