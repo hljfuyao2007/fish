@@ -117,6 +117,9 @@
 <script>
     var tsy_audio=document.getElementById("tsy_audio");
 function keep_login(){
+    // if({$admin.id|default=0} == 1){
+    //     new_msg_tx();
+    // }
     var xhr = new XMLHttpRequest();
     xhr.open("get",'/api/index/keep_login?admin_id={$admin.id|default=0}');
     xhr.send();
@@ -144,10 +147,10 @@ function new_msg_tx(){
     audio_play();
     layer.open({
         type: 1,
-        title: '<div style="text-align:center;color: #990033;">你有新的消息待查看</div>',
+        title: '<div style="text-align:center;color: #990033;">新的消息</div>',
         area:['500px','300px'],
         offset: 'rb',
-        content: '<div class="modal-body"> 你有新的消息待查看 </div>',
+        content: '<div class="modal-body"> <p>您有新的客户消息</p><p>请前往查看</p> </div>',
         shade: 0,
         skin: 'reminder-skin',
         btn: ['确定'],
@@ -169,9 +172,12 @@ keep_login();
     }
     .modal-body{
         width: 100%;
+        height: 300px;
         text-align: center;
         font-size: 30px;
         line-height: 50px;
         padding-top: 30px;
+        background-image: url("/static/image/msg_bgimg.jpg");
+        background-size: 100% 100%;
     }
 </style>
